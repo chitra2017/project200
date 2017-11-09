@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+ <script type="text/javascript" src="/face/lib/Bootstrap/bootstrap.js"></script>
+<link rel="stylesheet" href="/face/lib/Bootstrap/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    
+  <script src="/face/js/app.js"></script>
+  </head>
+<body onload="preventBack();">
+<div ng-app="myApp" ng-controller="locationCtrl">
+
+
+	<div ng-include="'/face/common/header.html'"></div>
+	<div class="container" style="margin-left: 6cm;padding-top: 50px;" ng-app="myApp" ng-controller="myCtrl">
+	<b>Mutual Friends</b>
+	<div ng-init="getFriends(sparam);">
+	
+  	<table border="0">
+   		<tr ng-repeat="user in friendlist">
+ 		<td style="padding-right: 20px;padding-top:20px;">
+ 		<img ng-src="http://localhost:8080/social/{{user.friendId}}.jpg"  alt="Image" width="80" height="80">
+		</td>
+		<td style="padding-right: 20px;padding-top:20px;">
+   		<font style="text-transform: capitalize;"><b>{{user.friendId}}</b></font></td>
+   	    <td style="padding-right: 20px;padding-top:20px;">
+ 		<a ng-href="Chat.html#?fid={{user.friendId}}&uname={{sparam}}" class="btn btn-primary">Invite</button>  
+ 		</td>
+ 	</table>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

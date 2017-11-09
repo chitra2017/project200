@@ -1,0 +1,92 @@
+<head>
+
+ <script type="text/javascript" src="/face/lib/Bootstrap/bootstrap.js"></script>
+<link rel="stylesheet" href="/face/lib/Bootstrap/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    
+  <script src="/face/js/app.js"></script>
+<style>
+
+.sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: lightGray;
+    overflow-x: hidden;
+    
+}
+
+.sidenav a {
+   
+     display: block;
+    padding-top: 15px;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.element {
+    
+    position:fixed;
+</style>
+
+<script type = "text/javascript" >
+   function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+</script>
+</head>
+
+<body onload="preventBack();">
+
+  
+<div ng-app="myApp" ng-controller="locationCtrl">
+
+
+<div class="sidenav">
+<img ng-src="http://localhost:8080/social/{{sparam}}.jpg"  alt="Image" width="40" height="40">
+<b><font face="Times New Roman" size="4" >Welcome {{sparam}}</font></b>
+  
+
+  
+  <br/>
+  <br/>
+<a ng-href="/face/index.jsp" class="btn btn-primary" style="height:20px width:20px">Logout</a>
+  <br/>
+  <a ng-href="/face/common/Home.html#?uname={{sparam}}" class="btn btn-primary">Home</a>
+<br/>
+  <a ng-href="/face/user/UserFriends.html#?uname={{sparam}}" class="btn btn-primary">Friends List</a>
+<br/>
+   <a ng-href="/face/user/AllUser.html#?uname={{sparam}}" class="btn btn-primary">AllUsers</a>
+   <br/>
+   
+   <a ng-href="/face/user/ReqFriends.html#?uname={{sparam}}" class="btn btn-primary">Friends Request</a>
+<br/>
+<a ng-href="/face/blog/CreateBlog.html#?uname={{sparam}}" class="btn btn-primary">Create Blog</a>
+<br/>
+  <a ng-href="/face/blog/AllBlog.html#?uname={{sparam}}" class="btn btn-primary">View All Blog</a>
+  <br/>
+  <a ng-href="/face/forum/CreateForum.html#?uname={{sparam}}" class="btn btn-primary">Create Forum</a>
+  <br/>
+  <a ng-href="/face/forum/AllForum.html#?uname={{sparam}}" class="btn btn-primary">View All Forum</a>
+</div>
+<div class="element" style="width:100%;background-color:lightGray;">
+<div style=" text-shadow: 5px 5px 2px gray; text-transform: uppercase;color:blue">
+<b><font face="Times New Roman" size="6"><center> Space Book </center></font></b>
+</div>
+
+</div>
+</div>
+</body>

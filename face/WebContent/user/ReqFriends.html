@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+ <script type="text/javascript" src="/face/lib/Bootstrap/bootstrap.js"></script>
+<link rel="stylesheet" href="/face/lib/Bootstrap/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    
+  <script src="/face/js/app.js"></script>
+  </head>
+ <body onload="preventBack();">
+<div ng-app="myApp" ng-controller="locationCtrl">
+
+
+	<div ng-include="'/face/common/header.html'"></div>
+	<div class="container" style="margin-left: 6cm;padding-top: 50px;" ng-app="myApp" ng-controller="myCtrl">
+   	<div ng-init="getReqFriends(sparam);">
+  
+	<table border="0">
+   	<tr ng-repeat="user in reqfrilist">
+     <td style="padding-right: 20px;padding-top:20px;">
+ 	   <img ng-src="http://localhost:8080/social/{{user.userID}}.jpg"  alt="Image" width="60" height="60">
+	 </td>
+	 <td style="padding-right: 20px;padding-top:20px;">
+     	 <font style="text-transform: capitalize;"><b>{{user.userID}}</b></font></td>
+     <td style="padding-right: 20px;padding-top:20px;">
+        <button ng-click="acceptFriendRequest(user.userID,sparam)" class="btn btn-primary">Accept Request</button>
+     </td>
+  	 <td style="padding-right: 20px;padding-top:20px;">
+       <button ng-click="rejectFriendRequest(user.userID,sparam)" class="btn btn-primary">Reject Request</button>
+   	</tr> 
+	</table>
+</div>
+</div>
+</div>
+</body>
+</html>

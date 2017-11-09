@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+ <script type="text/javascript" src="/face/lib/Bootstrap/bootstrap.js"></script>
+<link rel="stylesheet" href="/face/lib/Bootstrap/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    
+  <script src="/face/js/app.js"></script>
+   <script src="/face/js/blog.js"></script>
+  </head>
+ <body onload="preventBack();">
+<div ng-app="myApp" ng-controller="locationCtrl">
+
+
+	<div ng-include="'/face/common/header.html'"></div>
+	<div class="container" style="margin-left: 6cm;padding-top: 50px;" ng-app="myApp" ng-controller="myCtrl1">
+	<h1>BLOG</h1>
+	
+	    <div ng-init="viewBlog(bid);">
+  
+		<br/><strong><p><font style="text-transform: capitalize;">{{Blog.blogName}}</font></p></Strong><br/>
+    
+        Posted by :<i><b><font style="text-transform: capitalize;">{{Blog.blogCreatorId}} </font></b></i><br/>   
+        Last Update on:{{Blog.lastUpdateDate}} <br/>
+        {{Blog.blogData }}   <br/>
+        </div>        
+      
+   <form ng-submit="createcomment(sparam,bid)">
+    <input type="text"  placeholder="Comment" name="commentText" ng-model="Comment.commentText" autofocus>
+    <br/>
+    <input type="submit"  value="POST">
+   </form>
+    <h1>Comments</h1>
+   <div ng-init="getAllComm(bid);">
+   <div ng-repeat="comm in commlist">
+   <br/><strong><p><font style="text-transform: capitalize;">{{comm.commentText}}</font></p></Strong>
+   Posted by :<i><b><font style="text-transform: capitalize;">{{comm.commentUserId}} </font></b></i>   
+   Last Update on:{{comm.commentDate}} <br/>
+   </div>
+   </div>
+ </div>
+ 
+   </div>
+   </body>
+   </html>

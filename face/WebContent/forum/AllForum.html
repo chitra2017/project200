@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+ <script type="text/javascript" src="/face/lib/Bootstrap/bootstrap.js"></script>
+<link rel="stylesheet" href="/face/lib/Bootstrap/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    
+  <script src="/face/js/app.js"></script>
+    <script src="/face/js/blog.js"></script>
+  </head>
+<body onload="preventBack();">
+<div ng-app="myApp" ng-controller="locationCtrl">
+
+
+	<div ng-include="'/face/common/header.html'"></div>
+
+
+ <div class="container" style="margin-left: 6cm;padding-top: 50px;" ng-app="myApp" ng-controller="myCtrl">
+ <h1>ALL Forum</h1>
+    <div ng-init="getAllForum(sparam);">
+   
+   <div ng-repeat="forum in forumlist">
+<strong><p><font style="text-transform: capitalize;">{{forum.forumName}}</font></p></Strong>
+    {{forum.forumData }}   <br/> 
+     Posted by :{{forum.forumCreatorID}}   
+   Last Update on:{{forum.lastUpdateDate}} <br/>
+    <a ng-href="/face/forum/ViewForum.html#?forumid={{forum.forumID}}&uname={{sparam}}" class="btn btn-primary">View Forum</a>
+    <br/>
+   </div>
+   </div>
+   </div>
+   </div>
+   </body>
+   </html>
+   

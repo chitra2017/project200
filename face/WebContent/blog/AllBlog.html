@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+ <script type="text/javascript" src="/face/lib/Bootstrap/bootstrap.js"></script>
+<link rel="stylesheet" href="/face/lib/Bootstrap/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    
+  <script src="/face/js/app.js"></script>
+    <script src="/face/js/blog.js"></script>
+  </head>
+  <body onload="preventBack();">
+<div ng-app="myApp" ng-controller="locationCtrl">
+
+
+	<div ng-include="'/face/common/header.html'"></div>
+
+
+ <div class="container" style="margin-left: 6cm;padding-top: 50px;" ng-app="myApp" ng-controller="myCtrl1">
+ <h1>ALL BLOG</h1>
+    <div ng-init="getAllBlog(sparam);">
+   <div ng-repeat="Blog in bloglist">
+<br/><strong><p><font style="text-transform: capitalize;">{{Blog.blogName}}</font></p></Strong><br/>
+    
+     Posted by :<i><b><font style="text-transform: capitalize;">{{Blog.blogCreatorId}} </font></b></i><br/>   
+   Last Update on:{{Blog.lastUpdateDate}} <br/>
+    {{Blog.blogData }}   <br/>
+         <a ng-href="/face/blog/ViewBlog.html#?bid={{Blog.blogID}}&uname={{sparam}}" class="btn btn-primary">View Blog</a>
+   
+   </div>
+   </div>
+   </div>
+   </div>
+   </body>
+   </html>
+   
+   

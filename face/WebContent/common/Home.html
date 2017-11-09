@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+ <script type="text/javascript" src="/face/lib/Bootstrap/bootstrap.js"></script>
+<link rel="stylesheet" href="/face/lib/Bootstrap/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    
+  <script src="/face/js/app.js"></script>
+<script src="/face/js/blog.js"></script>
+<script type = "text/javascript" >
+   function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+</script>
+<style type="text/css">
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 5px;
+    background-color:black;
+} </style>
+</head>
+
+<body onload="preventBack();">
+<div ng-app="myApp" ng-controller="locationCtrl">
+<div ng-include="'/face/common/header.html'"></div>
+<div class="container" style="margin-left: 6cm;padding-top: 50px;">
+<div ng-app="myApp" ng-controller="myCtrl">
+	<b> Users</b>
+    <div ng-init="getAllUser(sparam);">
+   <table border="0" >
+   <td ng-repeat="user in userlist" >
+      <table>
+         <img ng-src="http://localhost:8080/social/{{user.userID}}.jpg"  alt="Image" width="60" height="60">
+       <br/> <font style="text-transform: capitalize;"><b>{{user.userName}}</b></font>
+     <br/>  <button ng-click="sendFriendRequest(user.userID,sparam)" class="btn btn-primary">Add Friend</button>
+      <br/>
+   </table>
+   </td>
+   </table>
+   
+ </div>
+ <hr>
+ <b>Friends</b>
+ <div ng-init="getFriends(sparam);">
+	
+  	<table border="0">
+   		<td ng-repeat="user in friendlist">
+   		<table>
+ 		
+ 		<br/><img ng-src="http://localhost:8080/social/{{user.friendId}}.jpg"  alt="Image" width="80" height="80">
+		
+   		<br/><font style="text-transform: capitalize;"><b>{{user.friendId}}</b></font></td>
+   	    </table>
+ 	</table>
+    </div>
+ </div>
+ <hr>
+  <div ng-app="myApp" ng-controller="myCtrl1">
+ <b>Recently updated Blog</b>
+    <div ng-init="getAllBlog(sparam);">
+   <div ng-repeat="Blog in bloglist  | orderBy:'lastUpdateDate':true| limitTo: 1" >
+<br/><strong><p><font style="text-transform: capitalize;">{{Blog.blogName}}</font></p></Strong><br/>
+    
+     Posted by :<i><b><font style="text-transform: capitalize;">{{Blog.blogCreatorId}} </font></b></i><br/>   
+   Last Update on:{{Blog.lastUpdateDate}} <br/>
+    {{Blog.blogData }}   <br/>
+        
+   
+    </div>
+  </div>
+  <hr>
+ <b>Recently updated Comment</b>
+  <div ng-init="getAllComm1();">
+   <div ng-repeat="comm in commlist | orderBy:'commentDate':true| limitTo: 1" >
+   <br/><strong><p><font style="text-transform: capitalize;">{{comm.commentText}}</font></p></Strong>
+   Posted by :<i><b><font style="text-transform: capitalize;">{{comm.commentUserId}} </font></b></i>   
+   Last Update on:{{comm.commentDate}} <br/>
+   </div>
+   </div>
+</div>
+</div>
+</div>
+
+
+</body>
+</html>
+
+   

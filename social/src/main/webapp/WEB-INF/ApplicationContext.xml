@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+ xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+     xmlns:websocket="http://www.springframework.org/schema/websocket"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.2.xsd
+http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-4.2.xsd
+	 http://www.springframework.org/schema/websocket
+        http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+
+    <websocket:message-broker application-destination-prefix="/app">
+        <websocket:stomp-endpoint path="/hello">
+            <websocket:sockjs/>
+        </websocket:stomp-endpoint>
+        <websocket:simple-broker prefix="/topic"/>
+    </websocket:message-broker>
+	
+    <context:component-scan base-package="com" />
+    
+    <beans:bean id="us" class="com.dao.user.UserDAOService"/>
+<beans:bean id="up" class="com.dao.user.UserDAOImpl"/>
+     <beans:bean id="bs" class="com.dao.BlogDAOService"/>
+<beans:bean id="bimpl" class="com.dao.BlogDAOImpl"/>
+     <beans:bean id="cs" class="com.dao.ComDAOService"/>
+<beans:bean id="cimpl" class="com.dao.CommentDAOImpl"/>
+   
+  <beans:bean id="fs" class="com.dao.Forum.ForumDAOService"/>
+<beans:bean id="fp" class="com.dao.Forum.ForumDAOImpl"/>
+   <beans:bean id="fcs" class="com.dao.Forum.ForumComDAOService"/>
+<beans:bean id="fcimpl" class="com.dao.Forum.ForumCommentDAOImpl"/>
+   
+
+ <mvc:annotation-driven/>
+<tx:annotation-driven/>
+    
+    <!-- Data Source Declaration -->
+    <beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+        destroy-method="close">
+        <beans:property name="driverClassName" value="org.h2.Driver" />
+        <beans:property name="url"
+            value="jdbc:h2:tcp://localhost/~/test" />
+        <beans:property name="username" value="sa" />
+        <beans:property name="password" value="" />
+    </beans:bean>
+
+    <!-- Session Factory Declaration -->
+    
+    <beans:bean id="sessionFactory"  class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <beans:property name="dataSource" ref="dataSource" />     
+        <beans:property name="annotatedClasses">
+        <beans:list>
+        <beans:value>com.model.User
+        </beans:value>
+        <beans:value>com.model.Blog
+        </beans:value>
+        <beans:value>com.model.Comment
+        </beans:value>
+         <beans:value>com.model.Forum
+        </beans:value>
+        <beans:value>com.model.ForumCom
+        </beans:value>
+        
+                
+                
+        </beans:list>
+        </beans:property>          
+        <beans:property name="hibernateProperties">
+            <beans:props>
+                <beans:prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</beans:prop>
+                <beans:prop key="hibernate.show_sql">true</beans:prop>
+                <beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop>               
+             </beans:props>
+         </beans:property>        
+
+	<!-- Package Name for Model Class -->
+       <beans:property name="packagesToScan">
+           <beans:list><beans:value>com</beans:value></beans:list>       
+        </beans:property> 
+    </beans:bean>
+   
+ 
+   
+    
+    <beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <beans:property name="sessionFactory" ref="sessionFactory" />
+    </beans:bean>
+</beans:beans>

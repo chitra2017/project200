@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+ <script type="text/javascript" src="/face/lib/Bootstrap/bootstrap.js"></script>
+<link rel="stylesheet" href="/face/lib/Bootstrap/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+     
+  <script src="/face/js/app.js"></script>
+  </head>
+ <body onload="preventBack();">
+<div ng-app="myApp" ng-controller="locationCtrl">
+
+
+	<div ng-include="'/face/common/header.html'"></div>
+	<div class="container" style="margin-left: 6cm;padding-top: 50px;" ng-app="myApp" ng-controller="myCtrl">
+	<b>Mutual Friends</b>
+	<div ng-init="getFriends(sparam);">
+	
+	<form ng-submit="createForum(sparam)" class="form-horizontal" id="a">
+       ForumName:
+    <input type="text"  placeholder="Forum" name="forumName" ng-model="Forum.ForumName" autofocus>
+    <br/>List of Friends:
+    <div ng-repeat="user in friendlist" >
+ 		
+				<input id="{{user.friendId}}" type="checkbox" value="{{user.friendId}}"  ng-checked="selection.indexOf(user.friendId) > -1" ng-click="toggleSelection(user.friendId)" />
+				
+				
+				{{user.friendId}}
+			
+	
+		</div>
+	
+	<div class="selected-items-panel">
+	<span  class="selected-item">Members of Forum:<span>
+		<div ng-repeat="name in selection"  ng-model="Forum.ForumMembers">
+		{{name}}
+		</div>
+	</div>
+    
+   
+  
+  ForumData:
+  <br/>
+  <textarea rows="15" cols="80"  placeholder="Forum" name="forumData"  ng-model="Forum.forumData" ></textarea>
+  <br/>
+   
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+	
+  	
+   		
+
+
+</div>
+</div>
+</div>
+</body>
+</html>
+

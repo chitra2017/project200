@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+   
+ 
+<script>
+  
+
+    var mainApp = angular.module('mainApp', []);
+
+    mainApp.controller('FileUploadController', function($scope,$window, $http) {
+
+
+
+    $scope.uploadFile = function() {
+    	
+
+        var form = document.getElementById('a');
+        var formData = new FormData(form);
+
+        //$scope.dataform = {};
+        formData.append('formdata', JSON.stringify($scope.user));
+        $http.post('http://localhost:8080/social/up', formData, {
+            transformRequest : function(data, headersGetterFunction) {
+                return data;
+            },
+            headers : {
+                'Content-Type' : undefined
+            }
+        }).success(function(data, status, headers, config) {
+      		//the server get the data from controller and assigning the Products
+        	  alert('User Created');
+                  $scope.blog = data; 
+                  $window.location.href = 'http://localhost:8080/face/index.jsp';
+                  
+          }).error(function(data, status, headers, config) {
+                  alert("Error in User creation");
+          });
+    };
+});
+    </script>
+    
+<style>
+.error {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+
+.msg {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+}
+
+#login-box {
+	width: 400px;
+	padding: 20px;
+	margin: 100px auto;
+	background: #fff;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border: 1px solid #000;
+}
+
+
+</style>
+</head>
+<body onload="preventBack();">
+
+	<div id="login-box">
+
+		<center><h3>User Registration Form</h3></center>
+    
+
+
+<div ng-app="mainApp" ng-controller="FileUploadController">
+    <form ng-submit="uploadFile()" name="userForm" class="form-horizontal" enctype="multipart/form-data" id="a">
+   UserId    :
+    <input type="text"  placeholder="User" name="userId" ng-model="user.userID" required/>
+    <span ng-show="userForm.userId.$touched && userForm.userId.$invalid">The UserID is required.</span>
+    <br/><br/>
+   UserName  :
+    <input type="text"  placeholder="User" name="userName" ng-model="user.userName" required />
+  <span ng-show="userForm.userName.$touched && userForm.userName.$invalid">The UserPassword is required.</span>
+  
+
+    <br/><br/>
+    Password :
+    <input type="text"  placeholder="User" name="userPassword" ng-model="user.userPassword" required/>
+    <span ng-show="userForm.userPassword.$touched && userForm.userPassword.$invalid">The Password is required.</span>
+    <br/><br/>
+    Profile Image:
+        <input type="file" name="file" />
+      
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
+</div>
+</body>
+
+
+</html>
