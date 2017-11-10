@@ -178,6 +178,23 @@ public ResponseEntity <User> validate(@PathVariable("userName") String uname,@Pa
 			return new ResponseEntity<User>(newUser,HttpStatus.OK);
 	
 	}
+	
+	@PostMapping(value="/ChangePassUserRes/{userId}/{password}")
+	public ResponseEntity<User> createBlog2(@PathVariable("userId") String userId,
+			@PathVariable("password") String password	){
+	
+	User User=us.getUserById(userId);
+	User.setUserPassword(password);
+		boolean valid=us.updateUser(User);
+		
+		
+		
+		   
+			return new ResponseEntity<User>(User,HttpStatus.OK);
+	
+	}
+	
+	
 
     @MessageMapping("/hello")
     @SendTo("/topic/messages")

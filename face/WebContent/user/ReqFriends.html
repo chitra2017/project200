@@ -15,7 +15,7 @@
 	<div ng-include="'/face/common/header.html'"></div>
 	<div class="container" style="margin-left: 6cm;padding-top: 50px;" ng-app="myApp" ng-controller="myCtrl">
    	<div ng-init="getReqFriends(sparam);">
-  
+  	<b> Friends Request count :{{reqfrilist.length}}</b>
 	<table border="0">
    	<tr ng-repeat="user in reqfrilist">
      <td style="padding-right: 20px;padding-top:20px;">

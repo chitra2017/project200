@@ -46,9 +46,9 @@ hr {
    
  </div>
  <hr>
- <b>Friends</b>
+ 
  <div ng-init="getFriends(sparam);">
-	
+	<b> Friends count :{{friendlist.length}}</b>
   	<table border="0">
    		<td ng-repeat="user in friendlist">
    		<table>
@@ -59,28 +59,40 @@ hr {
    	    </table>
  	</table>
     </div>
- </div>
+ 
  <hr>
+ 
+    	<div ng-init="getReqFriends(sparam);">
+  	<b> Friends Request count :{{reqfrilist.length}}</b>
+  		</div>
+  		</div>
+ <hr>
+ <b>Blog Notifications</b>
   <div ng-app="myApp" ng-controller="myCtrl1">
- <b>Recently updated Blog</b>
+ 
     <div ng-init="getAllBlog(sparam);">
    <div ng-repeat="Blog in bloglist  | orderBy:'lastUpdateDate':true| limitTo: 1" >
-<br/><strong><p><font style="text-transform: capitalize;">{{Blog.blogName}}</font></p></Strong><br/>
-    
-     Posted by :<i><b><font style="text-transform: capitalize;">{{Blog.blogCreatorId}} </font></b></i><br/>   
-   Last Update on:{{Blog.lastUpdateDate}} <br/>
-    {{Blog.blogData }}   <br/>
+   
+     <b><font style="text-transform: capitalize;">{{Blog.blogCreatorId}}</b>
+     Posted a <b>blog</b>
+      on <b>{{Blog.lastUpdateDate}}</b>
+       <br/>
+       </font>
+   
         
    
     </div>
   </div>
   <hr>
- <b>Recently updated Comment</b>
+ <b>Comment Notifications</b> 
   <div ng-init="getAllComm1();">
    <div ng-repeat="comm in commlist | orderBy:'commentDate':true| limitTo: 1" >
-   <br/><strong><p><font style="text-transform: capitalize;">{{comm.commentText}}</font></p></Strong>
-   Posted by :<i><b><font style="text-transform: capitalize;">{{comm.commentUserId}} </font></b></i>   
-   Last Update on:{{comm.commentDate}} <br/>
+   <br/>
+ <b><font style="text-transform: capitalize;">{{comm.commentUserId}} </b>commented as
+ <b> {{comm.commentText}}</b> on   <b>{{comm.commentDate}}</b> <br/>
+ </font>
+ 
+ 
    </div>
    </div>
 </div>

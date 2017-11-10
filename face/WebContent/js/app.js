@@ -37,7 +37,29 @@ app.controller("myCtrl",function ($scope,$window, $http) {
 		  });
 		  
 		},
-		
+		$scope.changePass= function(uid) {
+			
+			  $http({
+			          method : 'POST',
+				//url address which we mention in controller
+			          url : 'http://localhost:8080/social/ChangePassUserRes/'+uid+'/'+$scope.user.userPassword
+			  }).success(function(data, status, headers, config) {
+				  
+				  $scope.valid = data;
+				  if( $scope.valid)
+					  {
+				         alert('Password Changed Success');
+			             
+			     	      $window.location.href = 'http://localhost:8080/face/common/Home.html#?uname='+uid;
+					  }
+				  else
+					  alert('Login Failed');
+			  }).error(function(data, status, headers, config) {
+				  
+				  alert('Error.....');
+			  });
+			  
+			},
 		$scope.newUser= function() {
 		
 			 
@@ -156,6 +178,9 @@ app.controller("myCtrl",function ($scope,$window, $http) {
 			  }).success(function(data, status, headers, config) {
 				  
 				  $scope.valid = data;
+				  alert('success.....');
+				  $window.location.reload();
+				  
 			  }).error(function(data, status, headers, config) {
 				  
 				  alert('Error.....');
@@ -191,9 +216,7 @@ app.controller("myCtrl",function ($scope,$window, $http) {
 
 
 			    $scope.createfcomment = function(uid,fid) {				
-			    		alert(fid);
-			    		alert(uid);
-			    		alert($scope.ForumComment.commentText);
+			    		
 			    	  $http({
 				          method : 'POST',
 					 url : 'http://localhost:8080/social/addCommForumRes/'+uid+'/'+fid+'/'+$scope.ForumComment.commentText         
@@ -207,7 +230,7 @@ app.controller("myCtrl",function ($scope,$window, $http) {
 			   });  
 			},
 			  $scope.viewforum= function(forumid) {
-			  	alert(forumid);
+			  
 		    $http({
 		            method : 'GET',
 			//url address which we mention in controller

@@ -54,6 +54,7 @@
             var to = document.getElementById('to').value;
             stompClient.send("/app/hello", {}, 
               JSON.stringify({'from':from,'to':to,'text':text}));
+             document.getElementById('text').value=null;
         }
          
         function showMessageOutput(messageOutput) {
@@ -63,9 +64,9 @@
             p.appendChild(document.createTextNode(messageOutput.from + ": " 
                     + messageOutput.text ));
             var from = document.getElementById('from').value;
-            alert(messageOutput.to);
-            alert(messageOutput.from);
+            var to = document.getElementById('to').value;
             if( (from==messageOutput.to )|| ( from==messageOutput.from ))
+            	if( (to==messageOutput.to )|| ( to==messageOutput.from ))
                        response.appendChild(p);
         }
     </script>
@@ -85,7 +86,7 @@
 
 	<div class="container" style="margin-left: 6cm;padding-top: 50px;" ng-app="myApp" ng-controller="myCtrl">
 
-
+<h1>Chating</h1>
         
        <div>
             <button id="connect" onclick="connect()">Connect</button>

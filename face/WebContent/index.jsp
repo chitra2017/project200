@@ -65,11 +65,11 @@
   <table>
     <tr>
    <td>User:</td>
-    <td><input type="text"  placeholder="User" name="userName" ng-model="user.userName" autofocus></td>
+    <td><input type="text"  placeholder="UserId" name="userName" ng-model="user.userName" autofocus></td>
     </tr>
     <tr>
     <td>Password:</td>
-     <td><input type="text"  placeholder="User" name="userPassword" ng-model="user.userPassword"></td>
+     <td><input type="password"  placeholder="UserPassword" name="userPassword" ng-model="user.userPassword"></td>
      </tr>
      <tr>
      <td>

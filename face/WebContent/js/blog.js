@@ -59,7 +59,9 @@ $http({
         	  alert('Blog Created');
                   $scope.blog = data; 
                   //$window.location.href = 'http://localhost:8080/face/index.jsp';
-                  
+                  $scope.blog.blogName=null;    
+                  $scope.blog.blogDescription=null;
+                  $scope.blog.blogData=null;
           }).error(function(data, status, headers, config) {
                   alert("Error in Blog creation");
           });

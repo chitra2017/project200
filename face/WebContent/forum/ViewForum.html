@@ -31,8 +31,9 @@
     <input type="submit"  value="POST">
    </form>
    
-    <h1>Comments</h1>
+
    <div ng-init="getAllComm(forumid);">
+    <h1>Comments Count:{{fcommlist.length}}</h1>
    <div ng-repeat="comm in fcommlist">
    <br/><strong><p><font style="text-transform: capitalize;">{{comm.commentText}}</font></p></Strong>
    Posted by :<i><b><font style="text-transform: capitalize;">{{comm.commentUserId}} </font></b></i>   

@@ -42,37 +42,14 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	public boolean updateUser(User user) {
-		try{
-			String sql="select userID,friendId,friendStatus from user_friends where userid= '"+user.getUserID()+"'";
-			List<Object> list=sessionFactory.getCurrentSession().createSQLQuery(sql).list();
-System.out.println("up"+list.size());
-
-
-
-
-
-Friend f;
-for(int i=0;i<list.size();i++){
-	f=new Friend();
-	Object[] obj=(Object[]) list.get(i);
-	f.setUserID((String) obj[0]);
-	f.setFriendId((String) obj[1]);
-	f.setFriendStatus((String) obj[2]);
-	f.setIsOnline('N');
-	user.getUserFriends().add(f);
-	
-}
+		
 			
 			user.setLastSeenOnline(new Date());
 			user.setUserRole("ROLE_USER");
 			user.setEnabled(1);
 			sessionFactory.getCurrentSession().update(user);
 			return true;
-		}
-		catch(Exception e){
-			System.err.println(e);
-			return false;
-		}
+		
 	}
 
 	public User getUserById(String userID) {

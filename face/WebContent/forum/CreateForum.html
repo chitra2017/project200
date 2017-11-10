@@ -19,7 +19,7 @@
 	
 	<form ng-submit="createForum(sparam)" class="form-horizontal" id="a">
        ForumName:
-    <input type="text"  placeholder="Forum" name="forumName" ng-model="Forum.ForumName" autofocus>
+    <input type="text"  placeholder="ForuName" name="forumName" ng-model="Forum.ForumName" autofocus>
     <br/>List of Friends:
     <div ng-repeat="user in friendlist" >
  		
@@ -32,9 +32,9 @@
 		</div>
 	
 	<div class="selected-items-panel">
-	<span  class="selected-item">Members of Forum:<span>
+	<b><span  class="selected-item">Members of Forum:<span></b>
 		<div ng-repeat="name in selection"  ng-model="Forum.ForumMembers">
-		{{name}}
+		<b>{{name}}</b>
 		</div>
 	</div>
     

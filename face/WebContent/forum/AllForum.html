@@ -19,7 +19,7 @@
  <div class="container" style="margin-left: 6cm;padding-top: 50px;" ng-app="myApp" ng-controller="myCtrl">
  <h1>ALL Forum</h1>
     <div ng-init="getAllForum(sparam);">
-   
+      <b>Forum Count:{{forumlist.length}}</b> 
    <div ng-repeat="forum in forumlist">
 <strong><p><font style="text-transform: capitalize;">{{forum.forumName}}</font></p></Strong>
     {{forum.forumData }}   <br/> 

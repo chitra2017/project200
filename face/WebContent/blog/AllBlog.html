@@ -19,7 +19,9 @@
  <div class="container" style="margin-left: 6cm;padding-top: 50px;" ng-app="myApp" ng-controller="myCtrl1">
  <h1>ALL BLOG</h1>
     <div ng-init="getAllBlog(sparam);">
+     <b>Blogs Count:{{bloglist.length}}</b> 
    <div ng-repeat="Blog in bloglist">
+  
 <br/><strong><p><font style="text-transform: capitalize;">{{Blog.blogName}}</font></p></Strong><br/>
     
      Posted by :<i><b><font style="text-transform: capitalize;">{{Blog.blogCreatorId}} </font></b></i><br/>   
