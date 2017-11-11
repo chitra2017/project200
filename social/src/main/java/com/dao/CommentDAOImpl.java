@@ -40,22 +40,12 @@ public class CommentDAOImpl implements CommentDAO {
 			
 			sessionFactory.getCurrentSession().save(comment);
 		
-			System.out.println("ffasdff--------------------------------------------");
+			//System.out.println("ffasdff--------------------------------------------");
 			return comment;
 		
 	}
 
 
-	public boolean removeComment(long commentID) {
-		try{
-			sessionFactory.getCurrentSession().delete(getComment(commentID));
-			return true;
-		}
-		catch(Exception e){
-			System.err.println(e);
-			return false;
-		}
-	}
 
 	
 	public Comment getComment(long commentID){

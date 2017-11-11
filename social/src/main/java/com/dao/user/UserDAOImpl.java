@@ -85,7 +85,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	public List<Friend> getFriendsOfUser(String userID){
-		System.out.println("impl meth"+userID);
+		//System.out.println("impl meth"+userID);
 		String sql="select userID,friendId,friendStatus from USER_FRIENDS where USERID=:userID and FRIENDSTATUS='Friend'";
 		SQLQuery query=sessionFactory.getCurrentSession().createSQLQuery(sql);
 		query.setParameter("userID", userID);
@@ -102,7 +102,7 @@ public class UserDAOImpl implements UserDAO {
 				frd.setIsOnline('N' );
 			returnList.add(frd);
 		}
-		System.out.println(""+returnList.size());
+	//	System.out.println(""+returnList.size());
 		return returnList;
 	}
 
@@ -130,7 +130,7 @@ public class UserDAOImpl implements UserDAO {
 	public boolean userValidate(String userID,String password) {
 		String sql="select * from User where userID = '"+userID+"' and  userPassword='"+password+"'";
 		List<Object> list=sessionFactory.getCurrentSession().createSQLQuery(sql).list();
-		System.out.println(list.size());
+		//System.out.println(list.size());
 			if(list.isEmpty()){
 				System.out.println("no user");
 					return false;
@@ -144,20 +144,20 @@ public class UserDAOImpl implements UserDAO {
 	{
 		try
 		{ 
-			System.out.println(senderID);
+			//System.out.println(senderID);
 	
 		User sendUser=(User) sessionFactory.getCurrentSession().load(User.class, new String( senderID));
 		
 			
 			
-		System.out.println( sendUser.getUserName());
+	//	System.out.println( sendUser.getUserName());
 		Friend friend=new Friend();
 		friend.setFriendId(receiverId);
 		friend.setFriendStatus("Request Sent");
 		friend.setIsOnline('N');
 		sendUser.getUserFriends().add(friend);
 		
-		System.out.println(friend.getFriendId());
+		//System.out.println(friend.getFriendId());
 		sessionFactory.getCurrentSession().update(sendUser);
 	
 		return true;
@@ -209,7 +209,7 @@ public class UserDAOImpl implements UserDAO {
 
 	public boolean rejectRequest(String senderId, String receiverID) {
 		try
-		{System.out.println("hello");
+		{//System.out.println("hello");
 			String sql="delete from USER_FRIENDS where userID='"+receiverID+"' and friendId='"+senderId+"'";
 			SQLQuery query=sessionFactory.getCurrentSession().createSQLQuery(sql);
 		
@@ -226,24 +226,6 @@ public class UserDAOImpl implements UserDAO {
 	
 	
 
-
-	public boolean setUserOffline(String userID) {
-		try{
-			User user=(User) sessionFactory.getCurrentSession().createQuery("from User where userID='"+userID+"'").uniqueResult();
-			SQLQuery query=sessionFactory.getCurrentSession().createSQLQuery("update USER_FRIENDS set ISONLINE='N' where FRIENDID=:userID");
-			query.setParameter("userID", user.getUserID());
-			query.executeUpdate();
-			user.setIsOnline('N');
-			user.setLastSeenOnline(new Date());
-		
-			updateUser(user);
-			return true;
-			}
-			catch(Exception e){
-		
-				return false;
-			}
-	}
 
 	
 

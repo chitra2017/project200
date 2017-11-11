@@ -30,7 +30,13 @@ public class ForumDAOImpl implements ForumDAO {
 
 	
 
-	public Forum createForum(String fname ,String fdata,List members,String uid){
+	public Forum createForum(String fname ,String fdata,String members,String uid){
+		 String[] frmmem = members.split(",");
+	for(int i=0;i<frmmem.length;i++){
+		
+		
+	
+		 System.out.println("frmmem["+i+"]="+frmmem[i]);}
 		try{
 			Forum f= new Forum();
 			f.setForumData(fdata);
@@ -39,12 +45,12 @@ public class ForumDAOImpl implements ForumDAO {
 			f.setLastUpdateDate(new Date());
 			sessionFactory.getCurrentSession().save(f);
 			Forum f1=(Forum) sessionFactory.getCurrentSession().load(Forum.class,  f.getForumID());
-			for(int i=0;i<members.size();i++){
+			for(int i=0;i<frmmem.length;i++){
 				Members m= new Members();
 				m.setForumID(f1.getForumID());
-				m.setMemberId((String) members.get(i));
+				m.setMemberId(frmmem[i]);
 				f1.getForumMembers().add(m);
-				System.out.println(	members.get(i));
+				
 			}
 
 			
@@ -55,6 +61,7 @@ public class ForumDAOImpl implements ForumDAO {
 			return null;
 		}
 
+		
 	}
 
 	public Forum getForumById(int ForumID) {
@@ -79,7 +86,7 @@ public class ForumDAOImpl implements ForumDAO {
 	
 			f.setLastUpdateDate((Date) obj[3]);
 			f.setForumCreatorID( obj[4].toString());
-			System.out.println(f.getForumCreatorID());
+		//	System.out.println(f.getForumCreatorID());
 			returnList.add(f);
 			
 		}

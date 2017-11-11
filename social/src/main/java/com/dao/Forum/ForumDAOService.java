@@ -24,7 +24,7 @@ public class ForumDAOService{
 	private ForumDAOImpl fp;
 	
 
-	public Forum createForum(String fname ,String fdata,List members,String uid){
+	public Forum createForum(String fname ,String fdata,String members,String uid){
 	return fp.createForum(fname, fdata, members,uid);
 }
 	

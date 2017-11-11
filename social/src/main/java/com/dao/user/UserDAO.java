@@ -30,8 +30,7 @@ public interface UserDAO {
 	
 	public boolean rejectRequest(String senderId,String receiverID);
 	
-	public boolean setUserOffline(String userID);
-	
+
 	
 	
 }

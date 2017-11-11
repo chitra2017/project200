@@ -67,9 +67,7 @@ public class UserDAOService{
 		return up.rejectRequest(senderId, receiverID);	
 	}
 
-	public boolean setUserOffline(String userID) {
-		return up.setUserOffline(userID);
-	}
+	
 
 	public List<User> getAllUsers(String uid) {
 		// TODO Auto-generated method stub

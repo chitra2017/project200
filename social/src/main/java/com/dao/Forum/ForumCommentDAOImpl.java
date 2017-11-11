@@ -46,7 +46,7 @@ public class ForumCommentDAOImpl implements ForumCommentDAO {
 
 	
 	public ForumCom getComment(long commentID){
-		return (ForumCom) sessionFactory.getCurrentSession().get(Comment.class, commentID);
+		return (ForumCom) sessionFactory.getCurrentSession().get(ForumCom.class, commentID);
 	}
 
 

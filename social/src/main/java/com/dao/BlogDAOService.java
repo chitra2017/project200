@@ -28,17 +28,7 @@ public class BlogDAOService  {
 	public boolean createBlog(Blog blog) {
 	return bimpl.createBlog(blog);	}
 
-	public boolean updateBlog(Blog blog) {
 	
-	return bimpl.updateBlog(blog);
-	}
-
-	public boolean removeBlog(long blogId) {
-		return bimpl.removeBlog(blogId);
-	}
-
-	public boolean removeBlog(Blog blog) {
-		return bimpl.removeBlog(blog);	}
 
 	public Blog getBlogById(long blogID) {
 		

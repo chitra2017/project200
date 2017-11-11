@@ -76,8 +76,18 @@ public class ForumRestController
 			@PathVariable("fdata") String fdata ,
 			@PathVariable("fname") String fname,@PathVariable("members") List members,
 			@PathVariable("uid") String uid){
-		
-		Forum f1=fs.createForum(fname,fdata,members,uid);
+		String s="";
+		String s1="";
+	    for (int i = 0; i < members.size() ; i++) {
+	    	s1=members.get(i).toString();
+	    	s=s+s1;
+	    	if (i!=members.size()-1)
+	    	s=s+",";
+	    	
+	 
+	    }
+	    System.out.println("------------"+s+"--------");
+		Forum f1=fs.createForum(fname,fdata,s,uid);
 		
 		
 		

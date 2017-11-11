@@ -6,7 +6,7 @@ import com.model.*;
 
 public interface ForumDAO {
 	
-	public Forum createForum(String fname ,String fdata,List members,String uid);
+	public Forum createForum(String fname ,String fdata,String members,String uid);
 	
 	
 	public Forum getForumById(int ForumID);

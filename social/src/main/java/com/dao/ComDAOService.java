@@ -34,11 +34,6 @@ public class ComDAOService {
 		return cimpl.addComment(blogID, comment_UserId, commentData)	;}
 
 	
-	public boolean removeComment(long commentID) {
-		return cimpl.removeComment(commentID);
-	}
-
-	
 	
 	public Comment getComment(long commentID){
 		return cimpl.getComment(commentID);

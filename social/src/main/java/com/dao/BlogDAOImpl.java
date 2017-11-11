@@ -45,62 +45,6 @@ public class BlogDAOImpl implements BlogDAO {
 
 	}
 
-	public boolean updateBlog(Blog blog) {
-	
-		try
-		{
-			blog.setLastUpdateDate(new Date());
-			sessionFactory.getCurrentSession().update(blog);
-			
-			return true;
-		}
-		catch(Exception e)
-		{
-			
-			e.printStackTrace();
-			return false;
-		}
-
-	}
-
-	public boolean removeBlog(long blogId) {
-		try
-		{
-		Blog blog=(Blog) getBlogById(blogId);
-		
-		
-
-		for (Comment cmt : blog.getComments()){
-			sessionFactory.getCurrentSession().delete(cmt);
-		}
-		 
-		 sessionFactory.getCurrentSession().delete(blog);
-		
-			
-		
-			return true;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			return false;
-		}
-	}
-
-	public boolean removeBlog(Blog blog) {
-		try
-		{
-			sessionFactory.getCurrentSession().delete(blog);
-		
-			return true;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			return false;
-		}
-	}
-
 	public Blog getBlogById(long blogID) {
 		
 		return (Blog) sessionFactory.getCurrentSession().createQuery("from Blog where blogID='"+blogID+"'").uniqueResult();
