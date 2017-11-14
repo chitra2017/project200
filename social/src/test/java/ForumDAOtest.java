@@ -1,11 +1,12 @@
 
-
-import junit.framework.Assert;
-
+import static org.junit.Assert.*;
+import org.junit.*;
+import org.junit.Test;
+import org.junit.Ignore;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.Test;
+
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -29,15 +30,15 @@ import com.model.Members;
 public class ForumDAOtest{
 
 	@Autowired
-	private ForumDAOService fs;
+	ForumDAOService fs;
 	
-@SuppressWarnings("null")
+
 @Test
 	public void createForumtest(){
-	System.out.println("--------------- Forum Created Test Case--------- ");
+	
 	String s="naren";
-   Forum f2= fs.createForum("Angular", "AngularJS",s,"chitra");
-	System.out.println("------------------------ ");
+  
+   assertNotNull("Create Forum",fs.createForum("Angular", "AngularJS",s,"chitra"));
   
 }
 	
@@ -46,25 +47,26 @@ public class ForumDAOtest{
 
 @Test
 	public void getForumbyidtest(){
-		System.out.println("--------------- Forum by Id Test Case--------- ");
-		Forum f=fs.getForumById(35);
-		System.out.println("Forum Name"+ f.getForumName());
+		
+	 assertNotNull("Get By ID Forum",fs.getForumById(35));
+		
 		
 	}
 	@Test
 	public void getAllForumtest(){
-		System.out.println("---------------All Forum Test Case--------- ");
+		
 		List<Forum> flist=fs.getAllForum("chitra");
-		System.out.println("There are"+flist.size()+" Forums ");
+		 assertNotNull("AllForum",flist);
+		 
 		
 	}
 	@Test
 	
 	public void getMembers(){
 		
-		System.out.println("---------------Members of Forum Test Case--------- ");
+		
 		List<Members> mlist=fs.getMembers(35);
-		System.out.println("There are"+mlist.size()+" Members ");
+		 assertNotNull("Members",mlist);
 		
 	}
 	

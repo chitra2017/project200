@@ -29,8 +29,8 @@ public class UserDAOtest {
 
 	@Autowired
 	 UserDAOService us;
-//	@Ignore
-//	@Test
+	@Ignore
+	@Test
 	public void createUsertest() {
 		System.out.println("----------------create user test case--------------");
 		User user=new User();

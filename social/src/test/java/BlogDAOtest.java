@@ -1,17 +1,19 @@
 
-import junit.framework.Assert;
-
 import java.util.Date;
 import java.util.List;
 
+
+import static org.junit.Assert.*;
+import org.junit.*;
 import org.junit.Test;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import com.dao.BlogDAOService;
 import com.model.Blog;
+import com.model.Friend;
 
  
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -20,42 +22,51 @@ public class BlogDAOtest  {
 	
 	
 	@Autowired
-	private BlogDAOService bs;
+	BlogDAOService bs;
 	
 @Test
 	public void createBlogtest() {
 		
-		System.out.println("---------------Create Blog Test Case--------- ");
+	
 		Blog b= new Blog();
 		b.setBlogCreatorId("naren");
 		b.setBlogData("JavaScript Framework");
 		b.setBlogDescription("JS");
 		b.setBlogName("JS");
-		boolean f=	bs.createBlog(b);
-		if(f)
-			System.out.println("Blog Created");
-		else
-			System.out.println("Blog not Created");
-		}
+assertTrue("Create",bs.createBlog(b));
+}
 
 	
 @Test
 	public void getBlogByIdtest() {
-		System.out.println("---------------Get Blog By Id Test Case--------- ");
-		Blog b= bs.getBlogById(1);
-		System.out.println(b.getBlogCreatorId());
+	
+		assertNotNull("GetBlog", bs.getBlogById(1));
+		
 	}
 @Test
 	public void getAllBlogs() {
-		System.out.println("---------------All Blog Test Case--------- ");
+	
 		List<Blog> blist=bs.getAllBlogs();
-		System.out.println("There are"+blist.size()+"blogs ");
+		assertNotNull("All Blogs",blist);
+		
+		for(Blog str:blist)
+		{
+			System.out.println(str.getBlogID());
+			
+		}
 	}
 @Test
 	public void getBlogsOfUser(){
-		System.out.println("---------------Blogs created by user Test Case--------- ");
+		
 		List<Blog> bulist=bs.getBlogsOfUser("chitra");
-		System.out.println("There are"+bulist.size()+"blogs for the user chitra ");
+assertNotNull("All Blogs of User",bulist);
+		
+		for(Blog str:bulist)
+		{
+			System.out.println(str.getBlogID());
+			
+		}
+		
 	}
 
 }

@@ -1,11 +1,12 @@
 
-
-import junit.framework.Assert;
-
+import static org.junit.Assert.*;
+import org.junit.*;
+import org.junit.Test;
+import org.junit.Ignore;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.Test;
+
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -26,32 +27,30 @@ public class ForumComDAOtest {
 	
 	
 	@Autowired
-	private ForumComDAOService fcs;
+	 ForumComDAOService fcs;
 	
 	@Test
 	public void getAllCommentsforum() {
-		System.out.println("---------------All Comments for the Forum  Test Case--------- ");
-		List<ForumCom> cflist=fcs.getAllComments(35);
-		System.out.println("There are "+cflist.size()+" Comments for Forumid 35");
 		
+		List<ForumCom> cflist=fcs.getAllComments(35);
+		 assertNotNull("AllComments",cflist);
 	}
 
 	
 	@Test
 	public void addComment() {
-		System.out.println("---------------Add Comment to the Forum Test Case--------- ");
-		fcs.addComment(35, "chitra","average");
-		System.out.println("The Comment is added for the forum 35 ");
+		
+		 assertNotNull("CreateComment",fcs.addComment(35, "chitra","average"));
+		
 	}
 
 	
 
 	@Test
 	public void getComment(){
-		System.out.println("---------------Get Comment by Id  Test Case--------- ");
-		ForumCom c=fcs.getComment(66);
 	
-		System.out.println("Comment:"+c.getCommentUserId());
+		 assertNotNull("GetComment",fcs.getComment(66));
+	
 	}
 
 	
