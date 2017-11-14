@@ -1,10 +1,15 @@
 
-import junit.framework.Assert;
+
+//import static org.junit.Assert.*;
 
 import java.util.Date;
 import java.util.List;
 
+
+import static org.junit.Assert.*;
+import org.junit.*;
 import org.junit.Test;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,138 +28,128 @@ public class UserDAOtest {
 	
 
 	@Autowired
-	private UserDAOService us;
-	
-	//@Test
+	 UserDAOService us;
+//	@Ignore
+//	@Test
 	public void createUsertest() {
 		System.out.println("----------------create user test case--------------");
 		User user=new User();
-		user.setUserID("dhetshi1");
-		user.setUserName("Dhetsshanya");
+		user.setUserID("dhetshi170");
+		user.setUserName("Dhetsshanya170");
 		user.setUserPassword("1234");
+	
 		
 		
-		boolean f=us.createUser(user);
-		if (f)
-			System.out.println("User Created");
-		else
-			System.out.println("User not Created");
+		assertTrue("created the record",us.createUser(user));
+			
+		
 	}
 
 	@Test
 	public void updateUsertest() {
-		System.out.println("----------------Update test case--------------");
-		User user=us.getUserById("dhetshi1");
+		
+		User user=us.getUserById("dhetshi170");
 		user.setUserPassword("abc");
 		
-		boolean f= us.updateUser(user);
-	
-	if(f)
-	System.out.println("user updated");
-	else
-		System.out.println("user not updated");	
-
+		
+	assertTrue("updated the record",us.updateUser(user));
 	}
 
 	
-	
-@Test
+	@Test
 	public void getAllFriendsOfUsertest() {
-	System.out.println("----------------All friends test case--------------");	
-	List<Friend> allflist= us.getAllFriendsOfUser("chitra");
-		Friend f=allflist.get(0);
 		
-		System.out.println(f.getFriendId());
+	List<Friend> aflist= us.getAllFriendsOfUser("chitra");
+	assertNotNull("All Friends",aflist);
+	
+	for(Friend str:aflist)
+	{
+		System.out.println(str.getFriendId());
 		
 	}
+	}
+	
 
 @Test
 	public void getFriendsOfUsertest(){
-	System.out.println("----------------Friends test case--------------");	
+	
 	List<Friend> flist= us.getFriendsOfUser("chitra");
-		Friend f=flist.get(0);
+	assertNotNull("Friends",flist);
+	
+	for(Friend str:flist)
+	{
+		System.out.println(str.getFriendId());
 		
-		System.out.println(f.getFriendId());
+	}
 	}
 
 
 
 @Test
 	public void sendFriendRequesttest() {
-	System.out.println("----------------Request test case--------------");
-	boolean	f=	us.sendFriendRequest("dhetshi1","saravanan"	);
+	
+assertTrue("Sending Request",us.sendFriendRequest("dhetshi","chitra"));
 
-if(f)
-	System.out.println("Request Sent");
 	}
 
 
 @Test
 	public void getFriendsReqOfUsertest(){
-	System.out.println("----------------Friend Request  test case--------------");	
-	List<Friend> rflist= us.getFriendsReqOfUser("saravanan");
 		
-		if (rflist.isEmpty())
-			System.out.println("no user given req");
-		else
-		{	Friend f=rflist.get(0);
-		System.out.println(f.getUserID());}
-		}
-
+	List<Friend> rflist= us.getFriendsReqOfUser("chitra");
+	assertNotNull("Friends",rflist);
+	
+	for(Friend str:rflist)
+	{
+		System.out.println(str.getFriendId());
+		
+	}
+}
 @Test
 public void acceptFriendRequesttest() {
-	System.out.println("----------------accept Request  test case--------------");
-	boolean	f=	us.acceptFriendRequest("dhetshi1","saravanan"	);
-
-if(f)
-	System.out.println("accepted Request");	
-else
 	
-		System.out.println("no Request to accept");}
+	assertTrue("accept request",	us.acceptFriendRequest("dhetshi","chitra"	));
+
+}
 
 
 @Test
 	public void userValidate() {
-	System.out.println("----------------Validated test case--------------");	
-	boolean f= us.userValidate("chitra","1234");
 		
-		if (f)
-			System.out.println("validated");
-		else
-			System.out.println("not validated");
+	assertTrue("userValidate",us.userValidate("chitra","1234"));
+		
+	
 	}
 
 
 @Test
 	public void rejectRequesttest() {
-	System.out.println("----------------Rejected Request  test case--------------");
-	boolean	f=	us.rejectRequest("saravanan","naren"	);
 	
-	if(f)
-		System.out.println("rejected Request");
-	else
-		System.out.println("no Request to reject");
+	assertTrue("RejectRequest",	us.rejectRequest("naren","viji"	));
+	
 	}
 
 
 
 @Test
 	public void getAllUserstest() {
-	System.out.println("----------------All User  test case--------------");
+	
 		List<User> ulist= us.getAllUsers("chitra");
-		User u=ulist.get(0);
-
-		System.out.println(u.getUserName());
+		assertNotNull("Users",ulist);
+		for(User str:ulist)
+		{
+			System.out.println(str.getUserID());
+			
+		}
 		
 	}
 
 @Test
 	public void getuserbyid(){
-	System.out.println("----------------Get userbyid  test case--------------");
+	
 
 	User u=us.getUserById("chitra");
-	
-	System.out.println("User Name:"+u.getUserName());
+	assertNotNull("User",u);
 				
 
 	}

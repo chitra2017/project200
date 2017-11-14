@@ -34,10 +34,10 @@ public class ForumDAOtest{
 @SuppressWarnings("null")
 @Test
 	public void createForumtest(){
-	System.out.println("--------------- Forum by Id Test Case--------- ");
+	System.out.println("--------------- Forum Created Test Case--------- ");
 	String s="naren";
    Forum f2= fs.createForum("Angular", "AngularJS",s,"chitra");
-	System.out.println("--------------- Forum created--------- ");
+	System.out.println("------------------------ ");
   
 }
 	
@@ -62,7 +62,7 @@ public class ForumDAOtest{
 	
 	public void getMembers(){
 		
-		System.out.println("---------------All Forum Test Case--------- ");
+		System.out.println("---------------Members of Forum Test Case--------- ");
 		List<Members> mlist=fs.getMembers(35);
 		System.out.println("There are"+mlist.size()+" Members ");
 		
